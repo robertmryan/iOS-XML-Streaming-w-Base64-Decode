@@ -37,7 +37,7 @@
 
 // the URL
 
-#define kXmlUrl @"http://www.robertmryan.com/test/hugefile.php"
+#define kXmlUrl @"http://your-sample-url/test.xml"
 
 // the tag names in the XML file
 
