@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  XmlParserDelegate.h
 //  Streaming XML
 //
 //  Created by Robert Ryan on 12/5/12. All rights reserved.
@@ -22,11 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController
+@protocol XmlParserDelegate <NSObject>
 
-- (IBAction)pressedParseWithNSXMLButton:(id)sender;
-- (IBAction)pressedParseWithLibXMLButton:(id)sender;
+@optional
+
+- (void)parserDidStartDocument;
+- (void)parserDidEndDocument;
+- (void)parserDidStartElement:(NSString *)elementName;
+- (void)parserDidEndElement:(NSString *)elementName;
+- (void)parserFoundCharacters:(NSString *)string;
+- (void)parserErrorOccurred:(NSError *)parseError;
 
 @end

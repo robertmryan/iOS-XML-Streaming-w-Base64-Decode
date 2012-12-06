@@ -18,6 +18,12 @@
 		836A0B07166FF50A004A6966 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 836A0B06166FF50A004A6966 /* Default-568h@2x.png */; };
 		836A0B0A166FF50A004A6966 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A0B08166FF50A004A6966 /* MainStoryboard.storyboard */; };
 		836A0B0D166FF50A004A6966 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A0B0C166FF50A004A6966 /* ViewController.m */; };
+		836A0B1D166FFE54004A6966 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 836A0B1C166FFE54004A6966 /* libxml2.dylib */; };
+		836A0B1E166FFE99004A6966 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A0B14166FF537004A6966 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		836A0B1F166FFE99004A6966 /* XmlParserLibXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A0B17166FF537004A6966 /* XmlParserLibXML.m */; };
+		836A0B20166FFE99004A6966 /* XmlParserNSXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A0B19166FF537004A6966 /* XmlParserNSXMLParser.m */; };
+		836A0B23166FFF3B004A6966 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 836A0B21166FFF3B004A6966 /* LICENSE */; };
+		836A0B24166FFF3B004A6966 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 836A0B22166FFF3B004A6966 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +43,16 @@
 		836A0B09166FF50A004A6966 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		836A0B0B166FF50A004A6966 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		836A0B0C166FF50A004A6966 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		836A0B13166FF537004A6966 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		836A0B14166FF537004A6966 /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		836A0B15166FF537004A6966 /* XmlParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlParserDelegate.h; sourceTree = "<group>"; };
+		836A0B16166FF537004A6966 /* XmlParserLibXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlParserLibXML.h; sourceTree = "<group>"; };
+		836A0B17166FF537004A6966 /* XmlParserLibXML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XmlParserLibXML.m; sourceTree = "<group>"; };
+		836A0B18166FF537004A6966 /* XmlParserNSXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XmlParserNSXMLParser.h; sourceTree = "<group>"; };
+		836A0B19166FF537004A6966 /* XmlParserNSXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XmlParserNSXMLParser.m; sourceTree = "<group>"; };
+		836A0B1C166FFE54004A6966 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		836A0B21166FFF3B004A6966 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		836A0B22166FFF3B004A6966 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836A0B1D166FFE54004A6966 /* libxml2.dylib in Frameworks */,
 				836A0AF1166FF509004A6966 /* UIKit.framework in Frameworks */,
 				836A0AF3166FF509004A6966 /* Foundation.framework in Frameworks */,
 				836A0AF5166FF509004A6966 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +73,8 @@
 		836A0AE1166FF509004A6966 = {
 			isa = PBXGroup;
 			children = (
+				836A0B22166FFF3B004A6966 /* README.md */,
+				836A0B21166FFF3B004A6966 /* LICENSE */,
 				836A0AF6166FF509004A6966 /* Streaming XML */,
 				836A0AEF166FF509004A6966 /* Frameworks */,
 				836A0AED166FF509004A6966 /* Products */,
@@ -73,6 +92,7 @@
 		836A0AEF166FF509004A6966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				836A0B1C166FFE54004A6966 /* libxml2.dylib */,
 				836A0AF0166FF509004A6966 /* UIKit.framework */,
 				836A0AF2166FF509004A6966 /* Foundation.framework */,
 				836A0AF4166FF509004A6966 /* CoreGraphics.framework */,
@@ -88,6 +108,8 @@
 				836A0B08166FF50A004A6966 /* MainStoryboard.storyboard */,
 				836A0B0B166FF50A004A6966 /* ViewController.h */,
 				836A0B0C166FF50A004A6966 /* ViewController.m */,
+				836A0B1A166FF541004A6966 /* Matt Gallagher NSData+Base64 */,
+				836A0B1B166FF568004A6966 /* XML Parsers */,
 				836A0AF7166FF509004A6966 /* Supporting Files */,
 			);
 			path = "Streaming XML";
@@ -105,6 +127,27 @@
 				836A0B06166FF50A004A6966 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		836A0B1A166FF541004A6966 /* Matt Gallagher NSData+Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				836A0B13166FF537004A6966 /* NSData+Base64.h */,
+				836A0B14166FF537004A6966 /* NSData+Base64.m */,
+			);
+			name = "Matt Gallagher NSData+Base64";
+			sourceTree = "<group>";
+		};
+		836A0B1B166FF568004A6966 /* XML Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				836A0B15166FF537004A6966 /* XmlParserDelegate.h */,
+				836A0B16166FF537004A6966 /* XmlParserLibXML.h */,
+				836A0B17166FF537004A6966 /* XmlParserLibXML.m */,
+				836A0B18166FF537004A6966 /* XmlParserNSXMLParser.h */,
+				836A0B19166FF537004A6966 /* XmlParserNSXMLParser.m */,
+			);
+			name = "XML Parsers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +206,8 @@
 				836A0B05166FF50A004A6966 /* Default@2x.png in Resources */,
 				836A0B07166FF50A004A6966 /* Default-568h@2x.png in Resources */,
 				836A0B0A166FF50A004A6966 /* MainStoryboard.storyboard in Resources */,
+				836A0B23166FFF3B004A6966 /* LICENSE in Resources */,
+				836A0B24166FFF3B004A6966 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836A0B1E166FFE99004A6966 /* NSData+Base64.m in Sources */,
+				836A0B1F166FFE99004A6966 /* XmlParserLibXML.m in Sources */,
+				836A0B20166FFE99004A6966 /* XmlParserNSXMLParser.m in Sources */,
 				836A0AFD166FF50A004A6966 /* main.m in Sources */,
 				836A0B01166FF50A004A6966 /* AppDelegate.m in Sources */,
 				836A0B0D166FF50A004A6966 /* ViewController.m in Sources */,
@@ -256,8 +304,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Streaming XML/Streaming XML-Prefix.pch";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Streaming XML/Streaming XML-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -267,8 +317,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Streaming XML/Streaming XML-Prefix.pch";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Streaming XML/Streaming XML-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
