@@ -81,8 +81,6 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 @property (nonatomic, copy) NSURL *url;
 @property (nonatomic) xmlParserCtxtPtr context;
 @property (nonatomic, getter = isDone) BOOL done;
-@property (nonatomic, strong) NSURLConnection *connection;
-
 @property (nonatomic,strong) NSURLSessionDataTask *dataTask;
 
 @end
@@ -104,7 +102,7 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 {
     self.done = NO;
     
-    // Creat the request & prevent any caching. 
+    // Create the request & prevent any caching.
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:30];
     
     // Create a download queue to perform the download on.
