@@ -73,7 +73,7 @@
 
 @protocol XmlParserDelegate;
 
-@interface XmlParserLibXML : NSObject
+@interface XmlParserLibXML : NSObject <NSURLSessionDelegate>
 
 @property (nonatomic, strong) id<XmlParserDelegate> delegate;
 

@@ -83,9 +83,11 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 @property (nonatomic, getter = isDone) BOOL done;
 @property (nonatomic, strong) NSURLConnection *connection;
 
+@property (nonatomic,strong) NSURLSessionDataTask *dataTask;
+
 @end
 
-@implementation XmlParserLibXML
+@implementation XmlParserLibXML 
 
 - (id)initWithURL:(NSURL *)url
 {
@@ -102,9 +104,24 @@ static xmlSAXHandler simpleSAXHandlerStruct;
 {
     self.done = NO;
     
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.url];
-    // create the connection with the request and start loading the data
-    self.connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    // Creat the request & prevent any caching. 
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLCacheStorageNotAllowed timeoutInterval:30];
+    
+    // Create a download queue to perform the download on.
+    NSOperationQueue *downloadQueue = [NSOperationQueue new];
+    downloadQueue.name = @"com.yourDownloadQueue.com";
+    
+    // Create a download session.
+    NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                                  delegate:self
+                                                             delegateQueue:downloadQueue];
+    
+    // Specify the URL of the GET request.
+    self.dataTask = [downloadSession dataTaskWithRequest:theRequest];
+    
+    // Start the task.
+    [self.dataTask resume];
+    
     // This creates a context for "push" parsing in which chunks of data that are not "well balanced" can be passed
     // to the context for streaming parsing. The handler structure defined above will be used for all the parsing.
     // The second argument, self, will be passed as user data to each of the SAX handlers. The last three arguments
@@ -114,7 +131,7 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     if ([self.delegate respondsToSelector:@selector(parserDidStartDocument)])
         [self.delegate parserDidStartDocument];
     
-    if (self.connection != nil)
+    if (self.dataTask != nil)
     {
         do {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
@@ -122,42 +139,43 @@ static xmlSAXHandler simpleSAXHandlerStruct;
     }
     // Release resources used only in this thread.
     xmlFreeParserCtxt(self.context);
-    self.connection = nil;
     
     if ([self.delegate respondsToSelector:@selector(parserDidEndDocument)])
         [self.delegate parserDidEndDocument];
 }
 
-#pragma mark NSURLConnection Delegate methods
+#pragma mark - NSURLSession Delegate Methods
 
-/*
- Disable caching so that each time we run this app we are starting with a clean slate. You may not want to do this in your application.
+/* Sent when data is available for the delegate to consume.  It is
+ * assumed that the delegate will retain and not copy the data.  As
+ * the data may be discontiguous, you should use
+ * [NSData enumerateByteRangesUsingBlock:] to access it.
  */
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-    return nil;
-}
-
-// Forward errors to the delegate.
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    self.done = YES;
-    if ([self.delegate respondsToSelector:@selector(parserErrorOccurred:)])
-        [self.delegate parserErrorOccurred:error];
-}
-
-// Called when a chunk of data has been downloaded.
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)URLSession:(NSURLSession *)session
+          dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
 {
     xmlParseChunk(self.context, (const char *)[data bytes], [data length], 0);
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error
 {
-    xmlParseChunk(self.context, NULL, 0, 1);
+    if (error)
+    {
+        NSLog(@"Error: %@", [error localizedDescription]);
+    } else
+    {
+        NSLog(@"Completed Successfully");
+    }
+    
     self.done = YES;
+    [session invalidateAndCancel];
 }
 
 @end
+
 
 #pragma mark SAX Parsing Callbacks
 
@@ -253,3 +271,5 @@ static xmlSAXHandler simpleSAXHandlerStruct = {
     endElementSAX,              /* endElementNs */
     NULL,                       /* serror */
 };
+
+
